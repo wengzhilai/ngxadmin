@@ -2,15 +2,13 @@ import { NbMenuItem } from '@nebular/theme';
 
 export const MENU_ITEMS: NbMenuItem[] = [
   {
-    title: 'E-commerce',
-    icon: 'nb-e-commerce',
-    link: '/pages/dashboard',
-    home: true,
+    title: '系统操作',
+    group: true,
   },
   {
-    title: 'IoT Dashboard',
-    icon: 'nb-home',
-    link: '/pages/iot-dashboard',
+    title: 'UI Features',
+    icon: 'nb-keypad',
+    link: '/pages/ui-features'
   },
   {
     title: 'FEATURES',

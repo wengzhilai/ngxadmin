@@ -25,7 +25,7 @@ export class ThemeSwitcherListComponent {
 
   themes = [
     {
-      title: 'Light',
+      title: '明亮',
       key: 'default',
     },
     {
