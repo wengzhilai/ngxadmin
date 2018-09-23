@@ -2,7 +2,7 @@ import {Component, Input} from '@angular/core';
 import { NbThemeService, NbPopoverDirective } from '@nebular/theme';
 import { AnalyticsService } from '../../../../@core/utils/analytics.service';
 import { NbJSThemeOptions } from '@nebular/theme/services/js-themes/theme.options';
-
+import { UtilityService } from "../../../../service";
 @Component({
   selector: 'ngx-theme-switcher-list',
   template: `
@@ -25,22 +25,24 @@ export class ThemeSwitcherListComponent {
 
   themes = [
     {
-      title: '明亮',
+      title: this.utilityService.LanguageStr("home.themes_Light"),
       key: 'default',
     },
     {
-      title: 'Cosmic',
+      title: this.utilityService.LanguageStr("home.themes_Cosmic"),
       key: 'cosmic',
     },
     {
-      title: 'Corporate',
+      title: this.utilityService.LanguageStr("home.themes_Corporate"),
       key: 'corporate',
     },
   ];
 
   constructor(
+    private utilityService: UtilityService,
     private themeService: NbThemeService,
     private analyticsService: AnalyticsService,
+    
   ) {}
 
   onToggleTheme(themeKey: string) {

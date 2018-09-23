@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 let counter = 0;
 
 @Injectable()
-export class UserService1 {
+export class UserService {
 
   private users = {
     nick: { name: 'Nick Jones', picture: 'assets/images/nick.png' },
@@ -20,7 +20,7 @@ export class UserService1 {
   private userArray: any[];
 
   constructor() {
-    // this.userArray = Object.values(this.users);
+    this.userArray = Object.values(this.users);
   }
 
   getUsers(): Observable<any> {
@@ -30,8 +30,10 @@ export class UserService1 {
   getUserArray(): Observable<any[]> {
     return observableOf(this.userArray);
   }
-
-  getUser(): Observable<any> {
+  /**
+   * 获取当前用户
+   */
+  getCurrentUser(): Observable<any> {
     counter = (counter + 1) % this.userArray.length;
     return observableOf(this.userArray[counter]);
   }

@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-
+import { UtilityService } from "../../../service";
 @Component({
   selector: 'ngx-switcher',
   styleUrls: ['./switcher.component.scss'],
@@ -28,13 +28,18 @@ export class SwitcherComponent {
   @Input() firstValue: any;
   @Input() secondValue: any;
 
-  @Input() firstValueLabel: string;
-  @Input() secondValueLabel: string;
+  firstValueLabel: string='';
+  secondValueLabel: string="";
 
   @Input() vertical: boolean;
 
   @Input() value: any;
   @Output() valueChange = new EventEmitter<any>();
+
+  constructor(private utilityService: UtilityService) {
+    this.firstValueLabel= this.utilityService.LanguageStr("home.LTR")
+    this.secondValueLabel= this.utilityService.LanguageStr("home.RTL")
+  }
 
   isFirstValue() {
     return this.value === this.firstValue;
