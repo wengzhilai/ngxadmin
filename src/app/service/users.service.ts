@@ -35,6 +35,6 @@ export class UserService {
    */
   getCurrentUser(): Observable<any> {
     counter = (counter + 1) % this.userArray.length;
-    return observableOf(this.userArray[counter]);
+    return observableOf(null);
   }
 }

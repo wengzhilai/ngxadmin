@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core'
+import { Location } from '@angular/common';
+import { Router} from '@angular/router'; //导入router服务
 
 @Injectable({
   providedIn: 'root'
@@ -8,6 +10,8 @@ export class UtilityService {
 
   constructor(
     public translate: TranslateService,
+    public location: Location,
+    public router: Router,
   ) { }
   /**
    * 获取翻译值
