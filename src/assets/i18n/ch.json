@@ -56,14 +56,16 @@
     "UnValid": "无效",
     "NoData": "没有数据"
   },
-  "login": {
+  "auth-login": {
     "Sign_Title": "登录",
     "Remember_Pwd": "记住密码",
     "Forgot_Password": "忘记密码",
     "Email": "邮箱",
-    "Login_Name": "登录名",
+    "loginName": "登录名",
     "Change_Lang": "切换语言",
-    "Password": "密码",
-    "Login_Btn": "登录"
+    "passWord": "密码",
+    "Login_Btn": "登录",
+    "placeholder_loginName": "请输入用户名",
+    "placeholder_passWord": "请输入密码"
   }
 }

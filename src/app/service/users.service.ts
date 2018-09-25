@@ -1,7 +1,7 @@
 
 import { of as observableOf,  Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
-
+import { Cookies } from "../Classes";
 
 let counter = 0;
 
@@ -34,7 +34,27 @@ export class UserService {
    * 获取当前用户
    */
   getCurrentUser(): Observable<any> {
-    counter = (counter + 1) % this.userArray.length;
-    return observableOf(null);
+    let str = Cookies.getCookie('user');
+    if (str == null || str == '') {
+      return observableOf(null)
+    }
+    let tmp = JSON.parse(str);
+    if (tmp == null) {
+      tmp = null;
+    }
+    return observableOf(tmp);
+  }
+  /**
+   * 设置当前用户
+   */
+  setCurrentUser(user:any) {
+    Cookies.setCookie("user",user)
+    if (user == null) {
+      return Cookies.setCookie('user', null)
+    } else {
+      console.log("保存用户：")
+      console.log(user)
+      return Cookies.setCookie('user', JSON.stringify(user));
+    }
   }
 }

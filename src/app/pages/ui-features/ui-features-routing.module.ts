@@ -5,7 +5,6 @@ import { UiFeaturesComponent } from './ui-features.component';
 import { ButtonsComponent } from './buttons/buttons.component';
 import { GridComponent } from './grid/grid.component';
 import { IconsComponent } from './icons/icons.component';
-import { ModalsComponent } from './modals/modals.component';
 import { TypographyComponent } from './typography/typography.component';
 import { TabsComponent, Tab1Component, Tab2Component } from './tabs/tabs.component';
 import { SearchComponent } from './search-fields/search-fields.component';
@@ -23,9 +22,6 @@ const routes: Routes = [{
   }, {
     path: 'icons',
     component: IconsComponent,
-  }, {
-    path: 'modals',
-    component: ModalsComponent,
   }, {
     path: 'popovers',
     component: PopoversComponent,
