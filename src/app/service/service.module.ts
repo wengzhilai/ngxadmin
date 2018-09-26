@@ -1,8 +1,11 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { UtilityService,UserService,ToPostService } from './';
-import { DefaultTreeviewI18n } from './TreeviewI18n';
+import {UserService} from "./users.service"
+import {ToPostService} from "./ToPost.Service"
+import {UtilityService} from "./utility.service"
+import {DefaultTreeviewI18n} from "./TreeviewI18n"
+
 import { SharedModule } from '../components/shared.module';
 import { ModalConfirmPage,ModalLoadingPage } from "../components/modals";
 const SERVICES = [

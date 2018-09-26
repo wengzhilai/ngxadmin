@@ -7,7 +7,7 @@ import { PostBaseModel } from "./PostBaseModel";
  * @export
  * @class RequesPagesModel
  */
-export class RequesPagesModel extends PostBaseModel  {
+export class RequestPagesModel extends PostBaseModel  {
     constructor() {
         super();
         this.AttachParams=new Array<KeyValuePair>()

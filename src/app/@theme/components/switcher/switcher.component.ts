@@ -1,5 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { UtilityService } from "../../../service";
+
+import {UtilityService} from "../../../service/utility.service"
+
 @Component({
   selector: 'ngx-switcher',
   styleUrls: ['./switcher.component.scss'],

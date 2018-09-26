@@ -201,6 +201,16 @@ export class UtilityService {
 
   }
 
+    /**
+   * 显示弹出框
+   * @param content 
+   * @param config 
+   */
+  ShowModal(config?: any, openModal: any = ModalConfirmPage) {
+    return this.modalService.show(openModal, config);
+  };
+
+
   // 用于保存弹出框
   public loader;
 

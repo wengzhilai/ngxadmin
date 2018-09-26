@@ -7,7 +7,8 @@ import { NotFoundComponent } from './miscellaneous/not-found/not-found.component
 const routes: Routes = [{
   path: '',
   component: PagesComponent,
-  children: [{
+  children: [
+{
     path: 'ui-features',
     loadChildren: './ui-features/ui-features.module#UiFeaturesModule',
   }, {

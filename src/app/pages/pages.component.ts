@@ -1,7 +1,11 @@
 import { Component } from '@angular/core';
+import { NbMenuItem } from '@nebular/theme';
 
 import { MENU_ITEMS } from './pages-menu';
-import { UtilityService, UserService } from "../service";
+import {UserService} from "../service/users.service"
+import {ToPostService} from "../service/ToPost.Service"
+import {UtilityService} from "../service/utility.service"
+import {DefaultTreeviewI18n} from "../service/TreeviewI18n"
 import { Config } from "../Classes";
 @Component({
   selector: 'ngx-pages',
@@ -35,6 +39,16 @@ export class PagesComponent {
       if (x == null) {
         this.utilityService.router.navigateByUrl("/auth/login")
       }
+      else{
+        let nowMenu = this.JsonToMenuItemJson(x.moduleList)
+        nowMenu.unshift(  {
+          title: '系统设置',
+          group: true,
+        })
+        this.menu = nowMenu.concat(MENU_ITEMS)
+      }
+      console.log(this.menu);
+
     })
   }
 
@@ -46,52 +60,63 @@ export class PagesComponent {
     });
   }
 
-  isOpen = false
-  CheckAppUrl() {
-    setTimeout(() => {
-      this.isOpen = false
-    }, 200);
-    if (!this.isOpen) {
-      this.isOpen = true;
-      return;
+  JsonToMenuItemJson(_inJson: any[]) {
+    let inJson=JSON.parse(JSON.stringify(_inJson))
+    console.log("开始 JSON 转 treeview的绑定对象")
+    console.log(inJson)
+
+    let reArr: NbMenuItem[] = []
+    for (let index = inJson.length - 1; index >= 0; index--) {
+      const element = inJson[index];
+      if (element["PARENT_ID"] == null || element["PARENT_ID"] == "") {
+        reArr.unshift({
+          data: element["ID"],
+          title: element["NAME"],
+          icon: element["IMAGE_URL"],
+        })
+        inJson.splice(index, 1)
+      }
     }
-    let buttons = [
-      {
-        name: "初始值",
-        click: (data): Promise<any> => {
-          return new Promise((resolver, reject) => {
-            Config.api = Config._api
-            Config.imgUrl = Config.api.toLowerCase().replace("/api", "")
-            console.log("imgUrl:" + Config.imgUrl);
-            console.log("api:" + Config.api);
-            resolver("初始值")
-          })
-        }
-      },
-      {
-        name: "确认",
-        click: (data): Promise<any> => {
-          return new Promise((resolver, reject) => {
-            this.utilityService.CooksSet('apiUrl', data.apiUrl);
-            Config.api = data.apiUrl
-            Config.imgUrl = Config.api.toLowerCase().replace("/api", "")
-            console.log("imgUrl:" + Config.imgUrl);
-            console.log("api:" + Config.api);
-            resolver("确认")
-          })
+    //添加4级子菜单
+    for (let index = 0; index < 4; index++) {
+      for (let index = inJson.length - 1; index >= 0; index--) {
+        const element = inJson[index];
+        if (element["PARENT_ID"] != null && element["PARENT_ID"] != "") {
+          reArr = this.JsonToTreeJsonAddChildren(reArr, element)
+          inJson.splice(index, 1)
         }
       }
-    ]
-    let inputs = [
-      {
-        name: 'apiUrl',
-        value: Config.api,
-        placeholder: 'API连接地址'
+    }
+
+    console.log("结束 JSON 转 treeview的绑定对象")
+    console.log(reArr)
+    return reArr;
+  }
+  JsonToTreeJsonAddChildren(inJson: Array<any>, addJson: any) {
+    if (inJson == null) {
+      inJson = []
+    }
+    if (addJson == null || addJson["NAME"] == null || addJson["NAME"] == "") {
+      return inJson;
+    }
+    for (let index = 0; index < inJson.length; index++) {
+      const element = inJson[index];
+      if (element["data"] == addJson["PARENT_ID"]) {
+        if (element["children"] == null) element["children"] = [];
+        inJson[index]["children"].unshift({
+          data: addJson["ID"],
+          title: addJson["NAME"],
+          icon: addJson["IMAGE_URL"],
+          link: addJson["LOCATION"],
+        })
       }
-    ]
-
-
-    this.utilityService.Confirm("配置接口", [], buttons, inputs)
+      else {
+        if (element["children"] != null) {
+          inJson[index]["children"] = this.JsonToTreeJsonAddChildren(element["children"], addJson)
+        }
+      }
+    }
+    return inJson;
   }
   
 }

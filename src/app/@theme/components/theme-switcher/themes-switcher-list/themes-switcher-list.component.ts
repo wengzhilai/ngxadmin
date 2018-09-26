@@ -2,7 +2,7 @@ import {Component, Input} from '@angular/core';
 import { NbThemeService, NbPopoverDirective } from '@nebular/theme';
 import { AnalyticsService } from '../../../../@core/utils/analytics.service';
 import { NbJSThemeOptions } from '@nebular/theme/services/js-themes/theme.options';
-import { UtilityService } from "../../../../service";
+import { UtilityService } from "../../../../service/utility.service";
 @Component({
   selector: 'ngx-theme-switcher-list',
   template: `

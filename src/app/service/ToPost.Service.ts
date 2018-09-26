@@ -5,11 +5,8 @@ import { Headers, Http, Response, RequestOptions } from '@angular/http';
 import { Config } from "../Classes";
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
-import { Observable } from 'rxjs/Observable';
 import { Injectable } from '@angular/core';
 import { AppReturnDTO } from "../Model/Dto/AppReturnDTO"
-import { AppDTO } from "../Model/Dto/AppDTO"
-import { KeyValuePair } from "../Model/Dto/KeyValuePair"
 
 @Injectable()
 export class ToPostService {
@@ -92,4 +89,36 @@ export class ToPostService {
       .catch();
   }
 
+
+
+  PostToObservable(apiName, postBean: any, callback = null) {
+    console.group("开始请求[" + apiName + "]参数：");
+    console.time("Post时间");
+
+    var headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    // if (AppGlobal.GetToken() != null) {
+    //   headers.append('Authorization', 'Bearer ' + AppGlobal.GetToken());
+    // }
+    // console.log(headers)
+    console.log(postBean)
+    let options = new RequestOptions({ headers: headers });
+
+    return this.http.post(Config.api + apiName, postBean, options).map((res) => {
+      console.log("返回结果：");
+      let response: any = res.json();
+      console.log(response)
+      if (response.IsSuccess) {
+        if (callback) {
+          callback(response);
+        }
+      }
+      else {
+        console.warn(response.Msg) 
+      }
+      console.timeEnd("Post时间");
+      console.groupEnd();
+      return response;
+    })
+  }
 }

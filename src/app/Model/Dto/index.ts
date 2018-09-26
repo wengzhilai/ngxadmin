@@ -7,7 +7,7 @@ export { JsonMessage } from './JsonMessage';
 export { KeyValuePair } from './KeyValuePair';
 export { PagingParam } from './PagingParam';
 export { PostBaseModel } from './PostBaseModel';
-export { RequesPagesModel } from './RequesPagesModel';
-export { RequesSaveModel } from './RequesSaveModel';
+export { RequestPagesModel } from './RequestPagesModel';
+export { RequestSaveModel } from './RequestSaveModel';
 
 export { UserDTO } from './UserDTO';

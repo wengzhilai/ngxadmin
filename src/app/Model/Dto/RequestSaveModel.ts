@@ -7,7 +7,7 @@ import { PostBaseModel } from "./PostBaseModel";
  * @export
  * @class RequesPagesModel
  */
-export class RequesSaveModel extends PostBaseModel  {
+export class RequestSaveModel extends PostBaseModel  {
     constructor() {
         super();
         this.para=new Array<KeyValuePair>()

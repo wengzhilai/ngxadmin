@@ -7,6 +7,7 @@ import { SmartTableFormatValuePage } from "./SmartTable/formatValue";
 import { TooltipModule } from 'ngx-bootstrap';
 import { TreeviewModule } from 'ngx-treeview';
 import { TreeviewSelectComponent } from "./TreeviewSelect/treeview-select.component";
+import { EditComponent } from "./edit/edit.component";
 
 @NgModule({
     declarations: [
@@ -14,6 +15,7 @@ import { TreeviewSelectComponent } from "./TreeviewSelect/treeview-select.compon
         SmartTableFormatValuePage,
         ModalLoadingPage,
         TreeviewSelectComponent,
+        EditComponent,
     ],
     imports: [
         CommonModule,
@@ -27,6 +29,7 @@ import { TreeviewSelectComponent } from "./TreeviewSelect/treeview-select.compon
         ModalLoadingPage,
         SmartTableFormatValuePage,
         TreeviewSelectComponent,
+        EditComponent,
     ]
 })
 export class SharedModule {
