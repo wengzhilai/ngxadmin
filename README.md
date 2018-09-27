@@ -15,3 +15,13 @@ npm install ngx-treeview --save
 
 npm uninstall -save @ng-bootstrap/ng-bootstrap
 .ion-chevron-left:before { content: "\f125"; }
+
+
+.menu-icon {
+    position: inherit;
+    width: auto;
+    height: auto;
+    left: 2px;
+    top: 50%;
+    margin-top: -8px;
+}

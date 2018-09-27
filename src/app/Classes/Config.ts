@@ -3,7 +3,7 @@ import { KeyValuePair } from "../Model/Dto";
 export class Config {
   static debug:boolean = false;
   static pageSize:number = 10;
-  static api:string = 'http://www.wjbjp.cn/Api/';
+  static api:string = 'http://www.wjbjp.cn/';
   static imgUrl:string = 'http://www.wjbjp.cn/Api/';
 
   static _api:string = Config.api;

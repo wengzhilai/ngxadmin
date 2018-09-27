@@ -7,11 +7,12 @@ import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
 import { Injectable } from '@angular/core';
 import { AppReturnDTO } from "../Model/Dto/AppReturnDTO"
-
+import { UtilityService } from "./utility.service";
 @Injectable()
 export class ToPostService {
   constructor(
     private http: Http,
+    private utilityService:UtilityService
   ) {
   }
 
@@ -23,7 +24,9 @@ export class ToPostService {
 
     var headers = new Headers();
     headers.append('Content-Type', 'application/json');
-
+    if (this.utilityService.GetToken() != null) {
+      headers.append('Authorization', 'Bearer ' +this.utilityService.GetToken());
+    }
     // console.log(headers)
     console.log(postBean)
     let options = new RequestOptions({ headers: headers });
@@ -97,9 +100,9 @@ export class ToPostService {
 
     var headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    // if (AppGlobal.GetToken() != null) {
-    //   headers.append('Authorization', 'Bearer ' + AppGlobal.GetToken());
-    // }
+    if (this.utilityService.GetToken() != null) {
+      headers.append('Authorization', 'Bearer ' + this.utilityService.GetToken());
+    }
     // console.log(headers)
     console.log(postBean)
     let options = new RequestOptions({ headers: headers });

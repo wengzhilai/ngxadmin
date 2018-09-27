@@ -8,7 +8,7 @@ import { TooltipModule } from 'ngx-bootstrap';
 import { TreeviewModule } from 'ngx-treeview';
 import { TreeviewSelectComponent } from "./TreeviewSelect/treeview-select.component";
 import { EditComponent } from "./edit/edit.component";
-
+import { PipeModule } from "../pipe/pipe.module";
 @NgModule({
     declarations: [
         ModalConfirmPage,
@@ -20,6 +20,7 @@ import { EditComponent } from "./edit/edit.component";
     imports: [
         CommonModule,
         ThemeModule,
+        PipeModule,
         TooltipModule.forRoot(),
         TreeviewModule.forRoot(),
     ],

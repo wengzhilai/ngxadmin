@@ -2,15 +2,6 @@ import { NbMenuItem } from '@nebular/theme';
 
 export const MENU_ITEMS: NbMenuItem[] = [
   {
-    title: '系统操作',
-    group: true,
-  },
-  {
-    title: 'UI Features',
-    icon: 'nb-keypad',
-    link: '/pages/ui-features'
-  },
-  {
     title: 'FEATURES',
     group: true,
   },

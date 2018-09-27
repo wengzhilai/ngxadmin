@@ -1,7 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'jsonFilter'
+  name: 'JsonFilter'
 })
 export class JsonFilterPipe implements PipeTransform {
   transform(items: any[], field: string, value: any, type: number = 0): any[] {

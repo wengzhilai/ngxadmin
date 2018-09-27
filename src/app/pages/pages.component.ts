@@ -9,8 +9,8 @@ import {DefaultTreeviewI18n} from "../service/TreeviewI18n"
 import { Config } from "../Classes";
 @Component({
   selector: 'ngx-pages',
+  styleUrls: ['./pages.component.scss'],
   template: `
-  
     <ngx-sample-layout>
       <nb-menu [items]="menu"></nb-menu>
       <router-outlet></router-outlet>
