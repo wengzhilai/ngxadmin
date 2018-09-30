@@ -21,7 +21,7 @@
         </ng-container>
       </div>
     </div>
-    <ng2-smart-table #smartTable [settings]="settings" (delete)="onDelete($event)"
+    <ng2-smart-table #smartTable [settings]="settings" [source]="source" (delete)="onDelete($event)"
       (edit)="onSave(this,$event)" (userRowSelect)="userRowSelect($event)" *ngIf="LoadSetting">
     </ng2-smart-table>
   </nb-card-body>

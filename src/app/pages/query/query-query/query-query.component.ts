@@ -8,7 +8,7 @@ import { Http } from '@angular/http';
 import { SmartTableFormatValuePage } from "../../../components/SmartTable/formatValue";
 import { Config } from '../../../Classes/Config';
 import { BsModalService } from 'ngx-bootstrap/modal';
-
+import { SmartTableHelper } from "../../../Classes";
 import { EditComponent } from "../../../components/edit/edit.component";
 
 @Component({
@@ -19,6 +19,7 @@ import { EditComponent } from "../../../components/edit/edit.component";
 export class QueryQueryComponent implements OnInit {
   @ViewChild('smartTable') smartTable: ElementRef;
 
+  source: SmartTableHelper;
   queryEnt: any = {
     REMARK:"　"
   };
@@ -35,7 +36,7 @@ export class QueryQueryComponent implements OnInit {
   /**
    * 用于绑定table的设置
    */
-  settings: any ={};
+  settings: any = SmartTableHelper.getDefaultSetting();
   /**
    * 读取配置文件的设置
    */
@@ -45,8 +46,8 @@ export class QueryQueryComponent implements OnInit {
   thisUrl: string = ""
   constructor(
     private routerIonfo: ActivatedRoute,
-    public toPostService: ToPostService,
-    public commonService: UtilityService,
+    private toPostService: ToPostService,
+    private commonService: UtilityService,
     private modalService: BsModalService,
 
     http: Http,
@@ -99,15 +100,7 @@ export class QueryQueryComponent implements OnInit {
         }
         if (this.rowBtnSet == null) this.rowBtnSet = []
 
-
-        
-        let tempCol = [];
-        for (var item in this.configJson) {
-          if (this.configJson[item]["hide"] == null || this.configJson[item]["hide"] != true) {
-            tempCol[item] = this.configJson[item]
-          }
-        }
-
+        let tempCol = SmartTableHelper.ReMoveHideItem(this.configJson);
         for (const item in tempCol) {
           if (tempCol[item]["renderComponent"] == "SmartTableFormatValuePage") {
             tempCol[item]["renderComponent"] = SmartTableFormatValuePage
@@ -120,7 +113,6 @@ export class QueryQueryComponent implements OnInit {
           this.settings.selectMode = "single"
         }
 
-        console.log(this.settings)
         if (this.rowBtnSet.length > 1) {
           this.settings.actions.edit = true
           this.settings.edit.editButtonContent = '<i class="' + this.rowBtnSet[0].class + '"></i>'
@@ -129,7 +121,7 @@ export class QueryQueryComponent implements OnInit {
           this.settings.actions.edit = true
           this.settings.delete.deleteButtonContent = '<i class="' + this.rowBtnSet[1].class + '"></i>'
         }
-        // this.source = new ServerDataSource(this.toPostService, this.commonService, { endPoint: 'query/query' }, this.code);
+        this.source = new SmartTableHelper(this.toPostService, this.commonService, { endPoint: 'query/query' }, this.code);
       }
       else {
         this.commonService.hideLoading()
@@ -209,8 +201,7 @@ export class QueryQueryComponent implements OnInit {
       this.toPostService.Post(apiUrl, postClass).then((data: AppReturnDTO) => {
         this.commonService.hideLoading()
         if (data.IsSuccess) {
-              this.ReLoad();
-              // this.source.refresh()
+          this.source.refresh()
         }
       });
     }
@@ -257,8 +248,7 @@ export class QueryQueryComponent implements OnInit {
           this.toPostService.Post(apiUrl, postClass).then((data: AppReturnDTO) => {
             console.log(data)
             if (data.IsSuccess) {
-              this.ReLoad();
-              // this.source.refresh()
+              this.source.refresh()
               add.hide()
             }
             else {
@@ -297,6 +287,7 @@ export class QueryQueryComponent implements OnInit {
     else {
       switch (openModal) {
         case "RoleEditComponent":
+          // return RoleEditComponent
         default:
           return EditComponent
       }
@@ -304,6 +295,6 @@ export class QueryQueryComponent implements OnInit {
   }
 
   ReLoad() {
-    // this.source.refresh()
+    this.source.refresh()
   }
 }

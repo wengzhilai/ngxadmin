@@ -6,6 +6,8 @@ import { QueryRoutingModule, routedComponents } from './query-routing.module';
 
 import { AppTranslationModule } from '../../app.translation.module';
 
+import { SmartTableFormatValuePage } from "../../components/SmartTable/formatValue";
+import { SharedModule } from "../../components/shared.module";
 
 @NgModule({
   imports: [
@@ -13,6 +15,10 @@ import { AppTranslationModule } from '../../app.translation.module';
     AppTranslationModule,
     ThemeModule,
     Ng2SmartTableModule,
+    SharedModule,
+  ],
+  entryComponents: [
+    SmartTableFormatValuePage
   ],
   declarations: [
     ...routedComponents

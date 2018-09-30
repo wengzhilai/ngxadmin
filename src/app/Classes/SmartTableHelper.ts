@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { LocalDataSource } from 'ng2-smart-table';
 import { getDeepFromObject } from './helpers';
 
-import { RequestPagesModel } from '../model/dto';
+import { RequestPagesModel } from '../Model/Dto';
 import { ToPostService,UtilityService } from "../service";
 import 'rxjs/add/operator/toPromise';
 export class SmartTableHelper extends LocalDataSource {
