@@ -12,6 +12,7 @@ npm install @ngx-translate/http-loader --save
 npm install ngx-bootstrap --save
 npm install ngx-treeview --save
 
+npm install exceptionless --save
 
 npm uninstall -save @ng-bootstrap/ng-bootstrap
 .ion-chevron-left:before { content: "\f125"; }

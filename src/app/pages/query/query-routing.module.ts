@@ -17,10 +17,13 @@ export const routes: Routes = [
   },
 ];
 
-
-
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
 export class QueryRoutingModule { }
+
+export const routedComponents = [
+  QueryComponent,
+  QueryQueryComponent,
+];

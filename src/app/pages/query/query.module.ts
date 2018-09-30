@@ -1,16 +1,21 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Ng2SmartTableModule } from 'ng2-smart-table';
 
-import { QueryRoutingModule } from './query-routing.module';
-import { QueryComponent } from './query.component';
-import { QueryQueryComponent } from './query-query/query-query.component';
-import { EasyUIModule } from 'ng-easyui/components/easyui/easyui.module';
+import { ThemeModule } from '../../@theme/theme.module';
+import { QueryRoutingModule, routedComponents } from './query-routing.module';
+
+import { AppTranslationModule } from '../../app.translation.module';
+
+
 @NgModule({
   imports: [
-    CommonModule,
     QueryRoutingModule,
-    EasyUIModule
+    AppTranslationModule,
+    ThemeModule,
+    Ng2SmartTableModule,
   ],
-  declarations: [QueryComponent, QueryQueryComponent]
+  declarations: [
+    ...routedComponents
+  ]
 })
 export class QueryModule { }

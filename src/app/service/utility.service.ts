@@ -7,6 +7,7 @@ import { ModalConfirmPage,ModalLoadingPage } from "../components/modals";
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { Cookies } from "../Classes";
 import { FormGroup } from '@angular/forms';
+import {ExceptionlessClient } from 'exceptionless'
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +20,19 @@ export class UtilityService {
     public location: Location,
     public router: Router,    
     private modalService: BsModalService,
-  ) { }
+  ) { 
+    
+  }
+
+  /**
+   * 记录错误日志
+   */
+  WiteLog(obj:any){
+    ExceptionlessClient.default.config.apiKey="ZevZKuGg0jZOohtFYKma1kcDiCWvUhBTROnzR1pN"
+    ExceptionlessClient.default.submitException(obj);
+  }
+
+
   /**
    * 获取翻译值
    * @param key 

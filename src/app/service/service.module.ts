@@ -2,8 +2,8 @@ import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import {UserService} from "./users.service"
-import {ToPostService} from "./ToPost.Service"
-import {UtilityService} from "./utility.service"
+import { UtilityService } from "../service/utility.service";
+import { ToPostService } from "../service/ToPost.Service";
 import {DefaultTreeviewI18n} from "./TreeviewI18n"
 
 import { SharedModule } from '../components/shared.module';
@@ -19,7 +19,8 @@ const SERVICES = [
     declarations: [
     ],
     entryComponents: [
-        ModalConfirmPage,ModalLoadingPage
+        ModalConfirmPage,
+        ModalLoadingPage
     ],
     exports: [
     ],
